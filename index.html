@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chemical Engineering AI Tutor</title>
     
+    <!-- Markdown and Math rendering -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.0/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -42,8 +47,16 @@
             position: relative;
         }
         
-        .chat-header h1 { font-size: 24px; font-weight: 600; }
-        .chat-header p { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+        .chat-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .chat-header p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
         
         .connection-status {
             position: absolute;
@@ -55,8 +68,15 @@
             font-weight: 600;
         }
         
-        .status-connected { background: rgba(46, 213, 115, 0.3); color: #fff; }
-        .status-disconnected { background: rgba(255, 71, 87, 0.3); color: #fff; }
+        .status-connected {
+            background: rgba(46, 213, 115, 0.3);
+            color: #fff;
+        }
+        
+        .status-disconnected {
+            background: rgba(255, 71, 87, 0.3);
+            color: #fff;
+        }
         
         .chat-messages {
             flex: 1;
@@ -86,7 +106,6 @@
             justify-content: center;
             font-weight: 600;
             flex-shrink: 0;
-            font-size: 12px;
         }
         
         .user-avatar {
@@ -113,8 +132,13 @@
             color: white;
         }
         
-        .message-content p { margin-bottom: 8px; }
-        .message-content p:last-child { margin-bottom: 0; }
+        .message-content p {
+            margin-bottom: 8px;
+        }
+        
+        .message-content p:last-child {
+            margin-bottom: 0;
+        }
         
         .message-content code {
             background: rgba(0,0,0,0.05);
@@ -137,13 +161,21 @@
             margin: 8px 0;
         }
         
+        .message-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        
         .typing-indicator {
             display: none;
             gap: 4px;
             padding: 12px 16px;
         }
         
-        .typing-indicator.active { display: flex; }
+        .typing-indicator.active {
+            display: flex;
+        }
         
         .typing-dot {
             width: 8px;
@@ -153,8 +185,13 @@
             animation: typing 1.4s infinite;
         }
         
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
         
         @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); }
@@ -212,6 +249,58 @@
             cursor: not-allowed;
         }
         
+        .thinking-toggle {
+            padding: 8px 16px;
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .thinking-toggle:hover {
+            background: #e2e8f0;
+        }
+        
+        .thinking-toggle.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .thinking-section {
+            background: #fef3c7;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        .thinking-section.visible {
+            display: block;
+        }
+        
+        .thinking-header {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .thinking-content {
+            color: #78350f;
+            font-size: 13px;
+            line-height: 1.5;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        
         .welcome-message {
             text-align: center;
             padding: 40px 20px;
@@ -226,6 +315,7 @@
         
         .example-questions {
             display: grid;
+            grid-template-columns: 1fr;
             gap: 10px;
             margin-top: 20px;
         }
@@ -245,6 +335,11 @@
             border-color: #667eea;
             transform: translateX(4px);
         }
+        
+        /* Math rendering styles */
+        .katex {
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
@@ -261,16 +356,16 @@
             <div class="welcome-message">
                 <h2>Welcome to your ChemE AI Tutor!</h2>
                 <p>Powered by Qwen3 235B - one of the most capable models for technical content.</p>
-                <p style="font-size: 12px; color: #94a3b8; margin-top: 8px;">⏱️ Responses may take 30-60 seconds</p>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 8px;">⏱️ Responses may take 30-60 seconds for detailed answers</p>
                 <div class="example-questions">
                     <div class="example-question" onclick="sendExample(this)">
-                        💡 What is the Carnot efficiency? Show the equation.
+                        💡 What is the Carnot efficiency and how do I calculate it?
                     </div>
                     <div class="example-question" onclick="sendExample(this)">
-                        📊 Explain CSTR vs PFR reactors with equations
+                        📊 Explain the difference between CSTR and PFR reactors
                     </div>
                     <div class="example-question" onclick="sendExample(this)">
-                        🔥 Derive the LMTD equation for heat exchangers
+                        🔥 How do I calculate LMTD for a heat exchanger?
                     </div>
                 </div>
             </div>
@@ -278,6 +373,9 @@
         
         <div class="chat-input-container">
             <div class="chat-input-wrapper">
+                <button class="thinking-toggle" id="thinkingToggle" onclick="toggleThinking()">
+                    💭 Show Thinking
+                </button>
                 <textarea 
                     class="chat-input" 
                     id="userInput" 
@@ -293,13 +391,15 @@
     </div>
 
     <script>
+        // Configuration - UPDATE THIS WITH YOUR NGROK URL
         const CONFIG = {
-            API_BASE_URL: 'https://8b5f7daf04aa.ngrok-free.app'
+            API_BASE_URL: 'https://8b5f7daf04aa.ngrok-free.app'  // UPDATE THIS!
         };
         
         let conversationHistory = [];
         let isFirstMessage = true;
         
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             checkConnection();
             adjustTextareaHeight();
@@ -309,7 +409,11 @@
         async function checkConnection() {
             try {
                 const response = await fetch(`${CONFIG.API_BASE_URL}/health`);
-                updateConnectionStatus(response.ok);
+                if (response.ok) {
+                    updateConnectionStatus(true);
+                } else {
+                    updateConnectionStatus(false);
+                }
             } catch (error) {
                 updateConnectionStatus(false);
             }
@@ -340,7 +444,7 @@
         }
         
         function sendExample(element) {
-            const question = element.textContent.trim().substring(2);
+            const question = element.textContent.trim().substring(2); // Remove emoji
             document.getElementById('userInput').value = question;
             sendMessage();
         }
@@ -351,25 +455,33 @@
             
             if (!message) return;
             
+            // Clear input and disable button
             input.value = '';
             adjustTextareaHeight();
             document.getElementById('sendButton').disabled = true;
             
+            // Hide welcome message on first interaction
             if (isFirstMessage) {
                 document.querySelector('.welcome-message').style.display = 'none';
                 isFirstMessage = false;
             }
             
+            // Add user message to chat
             addMessage(message, 'user');
+            
+            // Show typing indicator
             showTypingIndicator();
             
+            // Send to API
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 180000);
+                const timeoutId = setTimeout(() => controller.abort(), 150000); // 2.5 min timeout
                 
                 const response = await fetch(`${CONFIG.API_BASE_URL}/api/chat`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
                         message: message,
                         history: conversationHistory
@@ -378,13 +490,19 @@
                 });
                 
                 clearTimeout(timeoutId);
+                
                 hideTypingIndicator();
                 
-                if (!response.ok) throw new Error('API request failed');
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
                 
                 const data = await response.json();
+                
+                // Add bot response
                 addMessage(data.response, 'bot');
                 
+                // Update conversation history
                 conversationHistory.push({
                     role: 'user',
                     content: message
@@ -394,6 +512,7 @@
                     content: data.response
                 });
                 
+                // Keep only last 10 exchanges (20 messages)
                 if (conversationHistory.length > 20) {
                     conversationHistory = conversationHistory.slice(-20);
                 }
@@ -401,13 +520,14 @@
             } catch (error) {
                 hideTypingIndicator();
                 if (error.name === 'AbortError') {
-                    addMessage('Request timed out. The model may be processing a complex question.', 'bot');
+                    addMessage('Request timed out. The model may be processing a complex question. Please try a simpler query or wait and try again.', 'bot');
                 } else {
-                    addMessage('Error. Please check connection and try again.', 'bot');
+                    addMessage('Sorry, I encountered an error. Please check your connection and try again.', 'bot');
                 }
                 console.error('Error:', error);
             }
             
+            // Re-enable button
             document.getElementById('sendButton').disabled = false;
             input.focus();
         }
@@ -426,13 +546,17 @@
             contentDiv.className = 'message-content';
             
             if (sender === 'bot') {
+                // Render markdown for bot messages
                 const htmlContent = marked.parse(content);
                 contentDiv.innerHTML = htmlContent;
                 
+                // Render math equations
                 renderMathInElement(contentDiv, {
                     delimiters: [
                         {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
+                        {left: '$', right: '$', display: false},
+                        {left: '\\(', right: '\\)', display: false},
+                        {left: '\\[', right: '\\]', display: true}
                     ],
                     throwOnError: false
                 });
@@ -444,6 +568,7 @@
             messageDiv.appendChild(contentDiv);
             messagesContainer.appendChild(messageDiv);
             
+            // Scroll to bottom
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
         
@@ -471,9 +596,12 @@
         
         function hideTypingIndicator() {
             const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
+            if (indicator) {
+                indicator.remove();
+            }
         }
         
+        // Check connection periodically
         setInterval(checkConnection, 30000);
     </script>
 </body>
