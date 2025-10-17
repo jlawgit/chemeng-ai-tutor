@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Phenomena in Polymers: Problem Set</title>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            padding-left: 15px;
+            border-left: 5px solid #3498db;
+        }
+        
+        h3 {
+            color: #16a085;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        h4 {
+            color: #e74c3c;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .problem {
+            background: #f8f9fa;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .solution {
+            background: #e8f5e9;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #27ae60;
+        }
+        
+        .key-insight {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #ffc107;
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .equation-box {
+            background: #f0f8ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 2px solid #3498db;
+            text-align: center;
+        }
+        
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .highlight {
+            background: #ffffcc;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .summary-table {
+            margin: 30px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Transport Phenomena in Polymers: Problem Set</h1>
+        
+        <!-- Problem 1 -->
+        <div class="problem">
+            <h2>Problem 1: The Power of Molecular Weight (Momentum Transfer)</h2>
+            
+            <h3>Problem Statement</h3>
+            <p>Two grades of polystyrene (PS) are used in injection molding:</p>
+            <ul>
+                <li><strong>PS-100:</strong> Molecular weight M = 100,000 g/mol, viscosity η = 1,000 Pa·s at 200°C</li>
+                <li><strong>PS-300:</strong> Molecular weight M = 300,000 g/mol, viscosity η = ?</li>
+            </ul>
+            
+            <p>For entangled polymers, viscosity follows: \(\eta \propto M^{3.4}\)</p>
+            
+            <p><strong>a)</strong> Calculate the viscosity of PS-300<br>
+            <strong>b)</strong> Which grade requires more injection pressure? By what factor?<br>
+            <strong>c)</strong> Why might you still choose the high-MW grade despite processing difficulty?</p>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Part (a): Viscosity of PS-300</h4>
+            <p>Using the scaling law:</p>
+            <div class="equation-box">
+                \[\frac{\eta_2}{\eta_1} = \left(\frac{M_2}{M_1}\right)^{3.4}\]
+            </div>
+            
+            <p>Substituting values:</p>
+            <div class="equation-box">
+                \[\frac{\eta_2}{1000} = \left(\frac{300,000}{100,000}\right)^{3.4} = 3^{3.4} = 46.6\]
+            </div>
+            
+            <div class="equation-box">
+                \[\boxed{\eta_2 = 46,600 \text{ Pa·s}}\]
+            </div>
+            
+            <h4>Part (b): Injection Pressure Comparison</h4>
+            <p>Injection pressure is proportional to viscosity (for same flow rate):</p>
+            <div class="equation-box">
+                \[\boxed{\text{PS-300 requires 46.6× more pressure!}}\]
+            </div>
+            
+            <h4>Part (c): Why Choose High-MW Grade?</h4>
+            <p>Higher MW gives better mechanical properties (strength, toughness, impact resistance) — worth the processing challenge for structural parts.</p>
+            
+            <div class="key-insight">
+                <strong>Key Insight:</strong> Small changes in molecular structure cause HUGE changes in transport properties!
+            </div>
+        </div>
+        
+        <!-- Problem 2 -->
+        <div class="problem">
+            <h2>Problem 2: Glass Transition and Three Transport Properties</h2>
+            
+            <h3>Problem Statement</h3>
+            <p>Poly(methyl methacrylate) (PMMA, aka Plexiglass) has T<sub>g</sub> = 105°C. Below are properties at two temperatures:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>At 25°C</th>
+                        <th>At 150°C</th>
+                        <th>Units</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Viscosity η</td>
+                        <td>10<sup>12</sup></td>
+                        <td>10<sup>4</sup></td>
+                        <td>Pa·s</td>
+                    </tr>
+                    <tr>
+                        <td>Thermal diffusivity α</td>
+                        <td>0.10</td>
+                        <td>0.12</td>
+                        <td>mm²/s</td>
+                    </tr>
+                    <tr>
+                        <td>O₂ diffusivity D</td>
+                        <td>10<sup>-14</sup></td>
+                        <td>10<sup>-9</sup></td>
+                        <td>m²/s</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>a)</strong> Calculate the ratio of properties (high T / low T) for each transport property<br>
+            <strong>b)</strong> Which property is most sensitive to temperature crossing T<sub>g</sub>?<br>
+            <strong>c)</strong> Explain physically why mass transfer shows the largest change</p>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Part (a): Property Ratios</h4>
+            <ul>
+                <li><strong>Viscosity:</strong> \(\frac{10^4}{10^{12}} = 10^{-8}\) → <span class="highlight">viscosity decreases by 100 million times!</span></li>
+                <li><strong>Thermal diffusivity:</strong> \(\frac{0.12}{0.10} = 1.2\) → increases by 20%</li>
+                <li><strong>O₂ diffusivity:</strong> \(\frac{10^{-9}}{10^{-14}} = 10^{5}\) → <span class="highlight">increases by 100,000 times!</span></li>
+            </ul>
+            
+            <h4>Part (b): Most Sensitive Property</h4>
+            <div class="equation-box">
+                \[\boxed{\text{Viscosity is most sensitive (10}^8\text{ change), followed by mass diffusivity (10}^5\text{)}}\]
+            </div>
+            
+            <h4>Part (c): Physical Explanation</h4>
+            <ul>
+                <li><strong>Below T<sub>g</sub>:</strong> Chains are frozen → O₂ molecules must squeeze through tiny static gaps (very slow)</li>
+                <li><strong>Above T<sub>g</sub>:</strong> Chains wiggle constantly → O₂ "hops" through dynamic free volume (much faster)</li>
+                <li><strong>Heat transfer:</strong> Phonon vibrations work even in glassy state → less dramatic change</li>
+                <li><strong>Momentum transfer:</strong> Viscosity depends on chain entanglement relaxation → extremely sensitive to mobility</li>
+            </ul>
+            
+            <div class="key-insight">
+                <strong>Key Insight:</strong> T<sub>g</sub> is a "transport property cliff" — small temperature change, massive property change!
+            </div>
+        </div>
+        
+        <!-- Problem 3 -->
+        <div class="problem">
+            <h2>Problem 3: Polymer Membrane for Food Packaging (Mass Transfer)</h2>
+            
+            <h3>Problem Statement</h3>
+            <p>You're designing a chip bag. Oxygen causes staleness. Two polymer options:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Polymer</th>
+                        <th>Thickness (mm)</th>
+                        <th>O₂ Permeability P (cm³·mm/m²·day·atm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LDPE</td>
+                        <td>0.05</td>
+                        <td>8,000</td>
+                    </tr>
+                    <tr>
+                        <td>EVOH</td>
+                        <td>0.01</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>Outside air: 21% O₂ (0.21 atm), Inside bag: 0% O₂ initially<br>
+            Bag area: 0.1 m²</p>
+            
+            <p><strong>a)</strong> Calculate oxygen flux (cm³/day) through each material<br>
+            <strong>b)</strong> If 10 cm³ of O₂ makes chips taste stale, how long until staleness for each?<br>
+            <strong>c)</strong> Why is EVOH barrier layer so thin compared to LDPE?</p>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Part (a): Oxygen Flux</h4>
+            <p>Using Fick's Law through membranes:</p>
+            <div class="equation-box">
+                \[J = P \cdot A \cdot \frac{\Delta p}{L}\]
+            </div>
+            
+            <p><strong>LDPE:</strong></p>
+            <p>Area conversion: 0.1 m² = 1000 cm²</p>
+            <div class="equation-box">
+                \[J_{LDPE} = 8000 \times 0.1 \times \frac{0.21}{0.05} = 800 \times 4.2\]
+                \[\boxed{J_{LDPE} = 3,360 \text{ cm}^3/\text{day}}\]
+            </div>
+            
+            <p><strong>EVOH:</strong></p>
+            <div class="equation-box">
+                \[J_{EVOH} = 5 \times 0.1 \times \frac{0.21}{0.01} = 0.5 \times 21\]
+                \[\boxed{J_{EVOH} = 10.5 \text{ cm}^3/\text{day}}\]
+            </div>
+            
+            <h4>Part (b): Time to Staleness</h4>
+            <div class="equation-box">
+                \[t = \frac{\text{Critical O}_2}{\text{Flux}}\]
+            </div>
+            
+            <div class="equation-box">
+                \[\boxed{t_{LDPE} = \frac{10}{3360} = 0.003 \text{ days} = 4 \text{ minutes (useless!)}}\]
+            </div>
+            
+            <div class="equation-box">
+                \[\boxed{t_{EVOH} = \frac{10}{10.5} = 0.95 \text{ days} = 23 \text{ hours}}\]
+            </div>
+            
+            <h4>Part (c): Why Thin EVOH Layer?</h4>
+            <p>EVOH has <strong>1600× lower permeability</strong> than LDPE! Even at 1/5 the thickness, it's still 320× better barrier. EVOH is expensive, so we use thin layers in multilayer films (LDPE/EVOH/LDPE structure).</p>
+            
+            <div class="key-insight">
+                <strong>Key Insight:</strong> Material selection trumps geometry for mass transfer applications!
+            </div>
+        </div>
+        
+        <!-- Problem 4 -->
+        <div class="problem">
+            <h2>Problem 4: Viscous Heating in Extrusion (Coupled Heat + Momentum)</h2>
+            
+            <h3>Problem Statement</h3>
+            <p>Molten polyethylene (PE) is extruded through a die:</p>
+            <ul>
+                <li>Viscosity: η = 500 Pa·s</li>
+                <li>Shear rate: \(\dot{\gamma}\) = 100 s⁻¹</li>
+                <li>Density: ρ = 800 kg/m³</li>
+                <li>Specific heat: c<sub>p</sub> = 2000 J/(kg·K)</li>
+            </ul>
+            
+            <p><strong>a)</strong> Calculate the viscous heat generation rate per unit volume<br>
+            <strong>b)</strong> If no heat is removed, how fast does temperature rise?<br>
+            <strong>c)</strong> Why is this a problem in polymer processing?</p>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Part (a): Viscous Heat Generation Rate</h4>
+            <p>Viscous dissipation rate:</p>
+            <div class="equation-box">
+                \[\dot{q}''' = \eta \dot{\gamma}^2\]
+                \[\dot{q}''' = 500 \times (100)^2 = 500 \times 10,000\]
+                \[\boxed{\dot{q}''' = 5,000,000 \text{ W/m}^3 = 5 \text{ MW/m}^3}\]
+            </div>
+            
+            <h4>Part (b): Temperature Rise Rate</h4>
+            <p>Temperature rise rate (adiabatic):</p>
+            <div class="equation-box">
+                \[\frac{dT}{dt} = \frac{\dot{q}'''}{\rho c_p}\]
+                \[\frac{dT}{dt} = \frac{5,000,000}{800 \times 2000} = \frac{5,000,000}{1,600,000}\]
+                \[\boxed{\frac{dT}{dt} = 3.1 \text{ °C/s} = 186 \text{ °C/min}}\]
+            </div>
+            
+            <h4>Part (c): Processing Problems</h4>
+            <ul>
+                <li>PE degrades above ~300°C → quality issues</li>
+                <li>Non-uniform temperature → non-uniform viscosity → uneven flow</li>
+                <li>Thermal expansion → dimensional instability</li>
+            </ul>
+            <p><strong>Solution:</strong> Die cooling channels to remove heat!</p>
+            
+            <div class="key-insight">
+                <strong>Key Insight:</strong> Momentum transfer (shear) GENERATES heat → must solve coupled transport equations!
+            </div>
+        </div>
+        
+        <!-- Problem 5 -->
+        <div class="problem">
+            <h2>Problem 5: Drug Delivery Patch (Time-Dependent Mass Transfer)</h2>
+            
+            <h3>Problem Statement</h3>
+            <p>A transdermal nicotine patch releases drug through a polymer membrane:</p>
+            <ul>
+                <li>Membrane thickness: L = 0.1 mm = 10⁻⁴ m</li>
+                <li>Nicotine diffusivity in polymer: D = 5×10⁻¹² m²/s</li>
+                <li>Initial concentration in patch: C₀ = 100 mg/mL = 100 kg/m³</li>
+                <li>Skin surface: C = 0 (perfect sink)</li>
+            </ul>
+            
+            <p><strong>a)</strong> Calculate the diffusion time constant through the membrane<br>
+            <strong>b)</strong> What is the steady-state flux?<br>
+            <strong>c)</strong> After how long does release rate drop to 1% of initial?</p>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Part (a): Diffusion Time Constant</h4>
+            <div class="equation-box">
+                \[\tau = \frac{L^2}{D}\]
+                \[\tau = \frac{(10^{-4})^2}{5 \times 10^{-12}} = \frac{10^{-8}}{5 \times 10^{-12}}\]
+                \[\boxed{\tau = 2000 \text{ s} = 33 \text{ minutes}}\]
+            </div>
+            <p>This is how long to reach steady-state diffusion!</p>
+            
+            <h4>Part (b): Steady-State Flux</h4>
+            <p>Steady-state flux (Fick's Law):</p>
+            <div class="equation-box">
+                \[J = D \frac{C_0 - 0}{L} = 5 \times 10^{-12} \times \frac{100}{10^{-4}}\]
+                \[J = 5 \times 10^{-12} \times 10^6\]
+                \[\boxed{J = 5 \times 10^{-6} \text{ kg/(m}^2\cdot\text{s)} = 5 \text{ mg/(m}^2\cdot\text{s)}}\]
+            </div>
+            
+            <h4>Part (c): Long-Term Release</h4>
+            <p>For depletion from a finite reservoir (patch runs out), the time depends on patch volume and area. Patches are designed to maintain steady release for hours to days by using thick reservoirs or rate-controlling membranes.</p>
+            
+            <div class="key-insight">
+                <strong>Key Insight:</strong> Polymer selection controls drug release kinetics → "programmable" mass transfer!
+            </div>
+        </div>
+        
+        <!-- Problem 6 -->
+        <div class="problem">
+            <h2>Problem 6: Reptation and Polymer Processing (Advanced)</h2>
+            
+            <h3>Problem Statement</h3>
+            <p>For entangled polymer chains, the reptation time (time for chain to escape its "tube") is:</p>
+            <div class="equation-box">
+                \[\tau_{rep} = \frac{L^4}{D} \propto M^3\]
+            </div>
+            <p>where L is chain length and D is self-diffusion coefficient.</p>
+            
+            <p>Polystyrene samples:</p>
+            <ul>
+                <li><strong>PS-50:</strong> M = 50,000 g/mol, τ<sub>rep</sub> = 0.1 s</li>
+                <li><strong>PS-200:</strong> M = 200,000 g/mol, τ<sub>rep</sub> = ?</li>
+            </ul>
+            
+            <p><strong>a)</strong> Calculate reptation time for PS-200<br>
+            <strong>b)</strong> In extrusion at 1000 s⁻¹ shear rate, which sample "sees" steady flow?<br>
+            <strong>c)</strong> What happens if processing time < reptation time?</p>
+        </div>
+        
+        <div class="solution">
+            <h3>Solution</h3>
+            
+            <h4>Part (a): Reptation Time for PS-200</h4>
+            <p>Using scaling:</p>
+            <div class="equation-box">
+                \[\frac{\tau_2}{\tau_1} = \left(\frac{M_2}{M_1}\right)^3\]
+                \[\frac{\tau_2}{0.1} = \left(\frac{200,000}{50,000}\right)^3 = 4^3 = 64\]
+                \[\boxed{\tau_{rep} = 6.4 \text{ s}}\]
+            </div>
+            
+            <h4>Part (b): Steady vs. Elastic Flow</h4>
+            <p>Processing time scale = \(1/\dot{\gamma}\) = 1/1000 = 0.001 s</p>
+            
+            <p><strong>Deborah Number</strong> (compares relaxation to process time):</p>
+            <div class="equation-box">
+                \[De = \frac{\tau_{rep}}{t_{process}}\]
+            </div>
+            
+            <ul>
+                <li>PS-50: De = 0.1/0.001 = 100 → <strong>elastic behavior</strong></li>
+                <li>PS-200: De = 6.4/0.001 = 6400 → <strong>highly elastic</strong></li>
+            </ul>
+            
+            <div class="equation-box">
+                \[\boxed{\text{Neither sample is in steady viscous flow! Both behave elastically.}}\]
+            </div>
+            
+            <h4>Part (c): Consequences of Fast Processing</h4>
+            <p>When process time < relaxation time:</p>
+            <ul>
+                <li>Chains can't relax → store elastic energy</li>
+                <li><strong>Die swell:</strong> Extrudate expands exiting die (stored stress releases)</li>
+                <li><strong>Melt fracture:</strong> Surface instabilities at high rates</li>
+                <li><strong>Orientation "frozen in":</strong> Affects final part properties</li>
+            </ul>
+            
+            <div class="key-insight">
+                <strong>Key Insight:</strong> Molecular relaxation time determines processing behavior → connects molecular dynamics to macro transport!
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="problem" style="border-left-color: #9b59b6;">
+            <h2 style="color: #8e44ad; border-left-color: #9b59b6;">Summary: The Big Picture</h2>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Transport</th>
+                        <th>Molecular Origin</th>
+                        <th>Polymer Example</th>
+                        <th>Key Equation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Momentum</strong></td>
+                        <td>Chain entanglement</td>
+                        <td>Viscosity ∝ M<sup>3.4</sup></td>
+                        <td>τ = η·γ̇</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Heat</strong></td>
+                        <td>Phonons + chain wiggling</td>
+                        <td>k changes at T<sub>g</sub></td>
+                        <td>q = -k∇T</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mass</strong></td>
+                        <td>Free volume hopping</td>
+                        <td>Permeability in films</td>
+                        <td>J = -D∇C</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="key-insight" style="border-left-color: #9b59b6; background: #f3e5f5;">
+                <strong>All three are controlled by the same thing: molecular mobility!</strong>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
